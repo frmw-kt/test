@@ -47,28 +47,3 @@ st.header('地域ごとの売上合計')
 fig_region = px.bar(total_sales_by_region, x='地域', y='売上', title='地域ごとの売上合計', color='売上')
 st.plotly_chart(fig_region)
 
-# 売上と流入経路の散布図
-st.header('売上 vs 流入経路')
-fig_scatter = px.scatter(df, x='流入経路', y='売上', color='事業名', title='売上と流入経路の関係', 
-                         hover_data=['ユーザー名', 'created_at'])
-st.plotly_chart(fig_scatter)
-
-# 売上のヒストグラム
-st.header('売上の分布')
-fig_histogram = px.histogram(df, x='売上', title='売上の分布', nbins=30)
-st.plotly_chart(fig_histogram)
-
-# 売上の相関行列を表示
-st.header('売上の相関行列')
-correlation_matrix = df.corr()
-st.write(correlation_matrix)
-
-# 相関行列のヒートマップを作成
-fig_heatmap = go.Figure(data=go.Heatmap(
-    z=correlation_matrix.values,
-    x=correlation_matrix.columns,
-    y=correlation_matrix.columns,
-    colorscale='Viridis'
-))
-fig_heatmap.update_layout(title='相関行列のヒートマップ')
-st.plotly_chart(fig_heatmap)
